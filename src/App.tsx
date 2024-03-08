@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Header from "./components/Header";
+import TeamList from "./components/TeamCard";
 
-function App() {
+const App = () => {
+  const [teams, setTeams] = useState([]);
+
+  useEffect(() => {
+    fetch("/CollegeBasketballTeams.json")
+      .then((response) => response.json())
+      .then((data) => setTeams(data))
+      .catch((error) => console.error("Error fetching teams:", error));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <TeamList team={teams} />
     </div>
   );
-}
+};
 
 export default App;
