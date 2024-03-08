@@ -1,0 +1,7 @@
+{
+    "printwidth": 80,
+    "singleQuote": true,
+    "semi": true,
+    "tabWidth": "all",
+    "endofLine": "auto"
+}
